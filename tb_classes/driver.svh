@@ -19,10 +19,7 @@ class driver extends uvm_driver #(sequence_item);
 
    task run_phase(uvm_phase phase);
       sequence_item command;
-      
-//      command_transaction    command;
       forever begin : command_loop
-//         command_port.get(command);
          seq_item_port.get_next_item(command);
          bfm.send_op(command.rs1_val, command.rs2_val, command.op);
          seq_item_port.item_done();

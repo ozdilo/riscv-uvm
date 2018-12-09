@@ -10,9 +10,8 @@ class core_agent extends uvm_agent;
    command_monitor command_monitor_h;
    result_monitor  result_monitor_h;
 
-  // uvm_tlm_fifo      #(command_transaction) command_f;
-   uvm_analysis_port #(sequence_item) cmd_mon_ap;
-   uvm_analysis_port #(result_transaction) result_ap;
+   // uvm_analysis_port #(sequence_item) cmd_mon_ap;
+   // uvm_analysis_port #(result_transaction) result_ap;
 
 
 function new (string name, uvm_component parent);
@@ -28,8 +27,6 @@ function void build_phase(uvm_phase phase);
    is_active = core_agent_config_h.get_is_active();
 
    if (get_is_active() == UVM_ACTIVE) begin : make_stimulus
-//      command_f = new("command_f", this);
-      //tester_h    = tester::type_id::create( "tester_h",this);
       sequencer_h  = new("sequencer_h",this);
       driver_h    = driver::type_id::create("driver_h",this);
    end
@@ -40,20 +37,18 @@ function void build_phase(uvm_phase phase);
    coverage_h = coverage::type_id::create("coverage_h",this);
    scoreboard_h = scoreboard::type_id::create("scoreboard_h",this);
 
-   cmd_mon_ap = new("cmd_mon_ap",this);
-   result_ap  = new("result_ap", this);
+   // cmd_mon_ap = new("cmd_mon_ap",this);
+   // result_ap  = new("result_ap", this);
 
 endfunction : build_phase
 
 function void connect_phase(uvm_phase phase);
    if (get_is_active() == UVM_ACTIVE) begin : make_stimulus
       driver_h.seq_item_port.connect(sequencer_h.seq_item_export);
-      // driver_h.command_port.connect(command_f.get_export);
-      // tester_h.command_port.connect(command_f.put_export);
    end
       
-   command_monitor_h.ap.connect(cmd_mon_ap);
-   result_monitor_h.ap.connect(result_ap);
+//   command_monitor_h.ap.connect(cmd_mon_ap);
+//   result_monitor_h.ap.connect(result_ap);
 
    command_monitor_h.ap.connect(scoreboard_h.cmd_f.analysis_export);
    command_monitor_h.ap.connect(coverage_h.analysis_export);

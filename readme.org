@@ -4,6 +4,8 @@
   :END:
 - Only tests the R-type and immediate-type instructions for now.
 - Branch/jump, CSR, forwarding, hazards will be tested in the future releases.
-- The testbench is written in order to test the cpu given in module https://github.com/ozdilo/riscv/blob/master/rtl/core.v
+- The testbench is written in order to test the cpu given in module https://github.com/ozdilo/riscv/blob/master/rtl/core_axi.v
+
 
 [[Uvm_0(1).png]]
+

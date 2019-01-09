@@ -7,5 +7,3 @@
 - The testbench is written in order to test the cpu given in module https://github.com/ozdilo/riscv/blob/master/rtl/core_axi.v
 
 
-[[Uvm_0(1).png]]
-
